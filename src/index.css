@@ -6,6 +6,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+:root {
+--sky-blue-crayola: hsla(189, 100%, 66%, 1);
+--indigo: hsla(271, 95%, 26%, 1);
+--deep-pink: hsla(331, 83%, 57%, 1);
+--light-pink: hsla(0, 100%, 82%, 1);
+--unbleached-silk: hsla(21, 100%, 88%, 1);
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

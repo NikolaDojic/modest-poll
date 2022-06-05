@@ -1,0 +1,11 @@
+.Poll {
+  display: inline-flex;
+  flex-direction: column;
+  background-color: var(--unbleached-silk);
+  width: 100%;
+  max-width: 300px;
+  padding: 15px;
+  border-radius: 12px;
+  align-items: center;
+  border: 1px solid var(--light-pink)
+}

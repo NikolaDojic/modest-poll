@@ -1,0 +1,43 @@
+.Answers{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+} 
+
+.Answer {
+  width: 100%;
+  padding: 5px 2px;
+  cursor: pointer;
+  position: relative;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.Answer .answerRow span{
+  margin-left: 10px;
+}
+
+.Answer .count {
+  font-weight: bold;
+}
+
+.Answer .percentage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid black;
+  height: 100%;
+  width: 100%;
+  background-color: var(--deep-pink);
+  z-index: 0;
+  opacity: 0.2;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  transition: width 1s ease-in-out;
+  
+}
+

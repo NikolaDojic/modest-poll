@@ -1,0 +1,19 @@
+.Footer {
+  margin-top: 10px;
+}
+.Footer button{
+  padding: 5px 15px;
+  border-radius: 5px;
+  background-color: var(--deep-pink);
+  color: white;
+  cursor: pointer;
+}
+.Footer button[disabled]{
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.Footer .thanksMessage {
+  font-weight: bold;
+  color: var(--deep-pink)
+}

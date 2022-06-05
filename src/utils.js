@@ -1,6 +1,6 @@
 export const generateOnAnswerClick =
-  ({ multipleAnswers, setSelectedAnswers, selectedAnswers }) =>
-  (answer) => {
+  ({ setSelectedAnswers, selectedAnswers }) =>
+  (answer, multipleAnswers) => {
     if (selectedAnswers.includes(answer)) {
       setSelectedAnswers(
         selectedAnswers.filter((selectedAnswer) => selectedAnswer !== answer)
@@ -26,15 +26,9 @@ export const hasErrors = ({ questionId, answers, question }) => {
     );
     return true;
   }
-  if (!answers) {
+  if (!answers.length) {
     console.error(
       new Error(`Cannot render poll widget without the 'data-answers'`)
-    );
-    return true;
-  }
-  if (document.querySelectorAll(`#${questionId}`).length > 1) {
-    console.error(
-      new Error(`Poll with data-question-id: ${questionId} already exists`)
     );
     return true;
   }
@@ -42,8 +36,7 @@ export const hasErrors = ({ questionId, answers, question }) => {
 };
 
 export const submitAnswers = ({ answers, questionId }) => {
-  console.log(answers);
-  const pollResults = JSON.parse(localStorage.getItem("questionId")) || {};
+  const pollResults = JSON.parse(localStorage.getItem(questionId)) || {};
   answers.forEach((answer) => {
     if (answer in pollResults) {
       pollResults[answer] += 1;
@@ -54,11 +47,52 @@ export const submitAnswers = ({ answers, questionId }) => {
   localStorage.setItem(questionId, JSON.stringify(pollResults));
 };
 
-export const getAnswers = (questionId) =>
-  JSON.parse(localStorage.getItem(questionId));
+export const getResults = (questionId) =>
+  JSON.parse(localStorage.getItem(questionId)) || {};
 
 export const SHOW_RESULTS = {
   ALWAYS: "always",
   AFTER_VOTING: "afterVoting",
   NEVER: "never",
+};
+
+export const normalizeProps = ({
+  answers,
+  delimiter = ";",
+  multipleAnswers = false,
+  ...props
+}) => {
+  let multipleAnswersParsed;
+  try {
+    multipleAnswersParsed = JSON.parse(multipleAnswers);
+  } catch (err) {
+    console.error(
+      `'data-multiple-answers' must be 'true' or 'false', value provided: '${multipleAnswers}'`
+    );
+    console.warn("falling back to 'false' for data-multiple-answers");
+    multipleAnswersParsed = false;
+  }
+  return {
+    ...props,
+    answers: answers.split(delimiter),
+    multipleAnswers: multipleAnswersParsed,
+  };
+};
+
+export const hasDuplicates = (widgetContainers) => {
+  const containers = [];
+  widgetContainers.forEach((c) => containers.push(c));
+
+  return containers.some(
+    (container) =>
+      containers.filter(
+        (cnt) => cnt.dataset.questionId === container.dataset.questionId
+      ).length > 1
+  );
+};
+
+export const calculatePercentage = ({ questionId, answer }) => {
+  const results = getResults(questionId);
+  const sum = Object.keys(results).reduce((acc, key) => acc + results[key], 0);
+  return (100 * results[answer]) / sum;
 };
