@@ -1,18 +1,17 @@
 # Modest poll
 
-
-Modest poll is a simple widget that allows us to embed polls into any html page. It is build with plain js (jsx) and react. 
-That choice stemmed from the fact that react is in general well suited for embeded widgets, as it is reacts default modus operandi. To make it a widget, as opposed to full blown single page app, some modifications have been made to the `index.js`, other than that it is a normal react application. To make it more user-friendly we also tweeked the build process, which resulted in single file bundle, thus minimizing the number of imports. 
+The Modest poll is a simple widget that allows us to embed polls into any html page. It is built with plain js (jsx) and react. 
+That choice stemmed from the fact that React is in general well suited for embedded widgets, as it is Reacts default modus operandi. To make it a widget, as opposed to a full-blown single-page app, some modifications have been made to the `index.js`, other than that it is a normal React application. To make it more user-friendly we also tweaked the build process, which resulted in a single file bundle, thus minimizing the number of imports. 
 
 ## Development
 
-Modest poll is built on top of the default `create-react-app`, so the usual commands also apply here.
+The Modest poll is built on top of the default `create-react-app`, so the usual commands also apply here.
 
-startting the development server can be done with command `npm start` or `yarn start`.
+starting the development server can be done with the command `npm start` or `yarn start`.
 
 to create the minified bundle run `yarn build` or `npm run build`. 
 
-to deploy the current state of the widget run `npm run deploy` or `yarn deploy`. Keep in mind that this is only possible from unix-based os.
+to deploy the current state of the widget run `npm run deploy` or `yarn deploy`. Keep in mind that this is only possible from UNIX-based os.
 
 to run the tests run `npm run test` or `yarn test`
 
@@ -23,17 +22,17 @@ To use the Modest poll widget on the webpage, we must import the bundled js file
 ```
 <script src="https://gitcdn.link/cdn/NikolaDojic/modest-poll-deployed/main/bundle.min.js"></script>
 ``` 
-aftr the closing `body` tag.
+after the closing `body` tag.
 Once we have the script imported we can go on with configuring our widget.
 
-Firstly we should add a html element which has attribute `widget='modest-poll'`.
+Firstly we should add an html element that has the attribute `widget='modest-poll'`.
 
-After that we should define the question id by setting some value to `data-question-id` attribute.
+After that, we should define the question id by setting some value to the `data-question-id` attribute.
 
 We also have to provide the possible answers. We can do so by setting the `data-answers` attribute. Answers should be separated by some delimiter. 
-the default one is `;` but we can change it in `data-delimiter` attribute. Lastly we can choose if we are going to allow multiple answers, with dedicated `data-multiple-answers` attribute, which value can be either `"true"` or `"false"(default)`.
+the default one is `;` but we can change it in the `data-delimiter` attribute. Lastly, we can choose if we are going to allow multiple answers, with a dedicated `data-multiple-answers` attribute, which value can be either `"true"` or `"false"(default)`.
 
-For example if wanted to create a poll that asks a question: 'How you feel today:', 
+For example, if wanted to create a poll that asks a question: 'How do you feel today:', 
 with possible answers:
 - Brilliant! I have so much energy
 - Always can be worse
@@ -50,5 +49,9 @@ we can do it like this:
       widget="modest-poll"
 ></div>
 ``` 
+Please note that it is not possible to have two polls with the same question id on a single page.
 
+## Minimal setup
 
+For convenience, we added the `minimal_setup` folder that contains an html file with poll widgets.
+They can be opened directly in the browser or hosted, dealer's choice.
