@@ -13,7 +13,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run build:react && npm run build:bundle",
+    "build:react": "react-scripts build",
+    "build:bundle": "webpack --config webpack.config.js",
+    "postbuild": "cd ./build ; ls | grep -v 'bundle.min.js' | xargs rm -rf; cd ..",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -34,5 +37,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack-cli": "^4.9.2"
   }
 }
