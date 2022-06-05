@@ -15,7 +15,7 @@ to run the tests run `npm run test` or `yarn test`
 
 ## How to use
 
-To use the Modest poll widget on the webpage, we must import the bundled js file into our `index.html`. To do that add `<script src="https://gitcdn.link/cdn/NikolaDojic/modest-poll-deployed/main/bundle.min.js"></script>` aftr the closing `body` tag.
+To use the Modest poll widget on the webpage, we must import the bundled js file into our `index.html`. To do that add ```<script src="https://gitcdn.link/cdn/NikolaDojic/modest-poll-deployed/main/bundle.min.js"></script>``` aftr the closing `body` tag.
 Once we have the script imported we can go on with configuring our widget.
 
 Firstly we should add a html element which has attribute `widget='modest-poll'`.
