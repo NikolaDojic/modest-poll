@@ -26,7 +26,7 @@ export const hasErrors = ({ questionId, answers, question }) => {
     );
     return true;
   }
-  if (!answers.length) {
+  if (!answers?.length) {
     console.error(
       new Error(`Cannot render poll widget without the 'data-answers'`)
     );
@@ -50,12 +50,6 @@ export const submitAnswers = ({ answers, questionId }) => {
 export const getResults = (questionId) =>
   JSON.parse(localStorage.getItem(questionId)) || {};
 
-export const SHOW_RESULTS = {
-  ALWAYS: "always",
-  AFTER_VOTING: "afterVoting",
-  NEVER: "never",
-};
-
 export const normalizeProps = ({
   answers,
   delimiter = ";",
@@ -63,26 +57,27 @@ export const normalizeProps = ({
   ...props
 }) => {
   let multipleAnswersParsed;
-  try {
-    multipleAnswersParsed = JSON.parse(multipleAnswers);
-  } catch (err) {
-    console.error(
-      `'data-multiple-answers' must be 'true' or 'false', value provided: '${multipleAnswers}'`
-    );
-    console.warn("falling back to 'false' for data-multiple-answers");
+  if (multipleAnswers === "true") {
+    multipleAnswersParsed = true;
+  } else {
+    if (multipleAnswers !== "false") {
+      console.error(
+        `'data-multiple-answers' must be 'true' or 'false', value provided: '${multipleAnswers}'`
+      );
+      console.warn("falling back to 'false' for data-multiple-answers");
+    }
     multipleAnswersParsed = false;
   }
   return {
     ...props,
     answers: answers.split(delimiter),
-    multipleAnswers: multipleAnswersParsed,
+    multipleAnswers: Boolean(multipleAnswersParsed),
   };
 };
 
 export const hasDuplicates = (widgetContainers) => {
   const containers = [];
-  widgetContainers.forEach((c) => containers.push(c));
-
+  widgetContainers.forEach((container) => containers.push(container));
   return containers.some(
     (container) =>
       containers.filter(

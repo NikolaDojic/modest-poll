@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 const Poll = ({ questionId, question, answers, multipleAnswers = false }) => {
   const [selectedAnswers, setSelectedAnswers] = useState([]);
   const votedRef = useRef(false);
-  //we use ref value in the state variable to be able to respond on the value change
+  //we use ref value in the state variable to be able to respond on the value change, and be sure that value persist throughout re-renders
   const [voted, setVoted] = useState(votedRef.current);
 
   useEffect(() => {

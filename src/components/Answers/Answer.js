@@ -1,12 +1,12 @@
 import React from "react";
 
 const Answer = ({
-  text,
-  onClick,
-  selected,
-  multipleAnswers,
   count,
+  multipleAnswers,
+  onClick,
   percentage,
+  selected,
+  text,
   voted,
 }) => {
   return (

@@ -9,6 +9,10 @@ import reportWebVitals from "./reportWebVitals";
 
 const widgetContainers = document.querySelectorAll("[widget='modest-poll']");
 
+if (!widgetContainers.length) {
+  console.warn("no elements with 'widget='modest-poll'");
+}
+
 if (hasDuplicates(widgetContainers)) {
   throw new Error(
     "There are 2 or more polls with same 'data-question-id' attribute"
