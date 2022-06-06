@@ -7,6 +7,24 @@ const mockProps = {
   answers: ["mock naswer1", "mock naswer2", "mock naswer3"],
 };
 describe("Answer component", () => {
+  //supressing log outputs
+  beforeEach(() => {
+    jest.spyOn(console, "log").mockImplementation(() => {});
+    jest.spyOn(console, "warn").mockImplementation(() => {});
+    jest.spyOn(console, "error").mockImplementation(() => {});
+  });
+  afterAll(() => {
+    console.log.mockRestore();
+    console.warn.mockRestore();
+    console.error.mockRestore();
+  });
+
+  afterEach(() => {
+    console.log.mockClear();
+    console.warn.mockClear();
+    console.error.mockClear();
+  });
+
   it("Should render the Poll component with correct question", () => {
     render(<Poll {...mockProps} />);
     const questionEl = screen.getByText(/Mock question/i);

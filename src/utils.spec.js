@@ -7,6 +7,23 @@ import {
 } from "./utils";
 
 describe("testing util functions", () => {
+  //supressing log outputs
+  beforeEach(() => {
+    jest.spyOn(console, "log").mockImplementation(() => {});
+    jest.spyOn(console, "warn").mockImplementation(() => {});
+    jest.spyOn(console, "error").mockImplementation(() => {});
+  });
+  afterAll(() => {
+    console.log.mockRestore();
+    console.warn.mockRestore();
+    console.error.mockRestore();
+  });
+
+  afterEach(() => {
+    console.log.mockClear();
+    console.warn.mockClear();
+    console.error.mockClear();
+  });
   const hasErrorsParams = {
     questionId: "mockId",
     answers: ["answer"],
