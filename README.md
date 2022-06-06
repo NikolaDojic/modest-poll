@@ -7,6 +7,8 @@ That choice stemmed from the fact that React is in general well suited for embed
 
 The Modest poll is built on top of the default `create-react-app`, so the usual commands also apply here.
 
+after cloning the repo run `npm install` or `yarn` command inside of it to install the dependencies.
+
 starting the development server can be done with the command `npm start` or `yarn start`.
 
 to create the minified bundle run `yarn build` or `npm run build`. 
