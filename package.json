@@ -19,7 +19,8 @@
     "postbuild": "cd ./build ; ls | grep -v 'bundle.min.js' | xargs rm -rf; cd ..",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "yarn build; cd build; git clone git@github.com:NikolaDojic/modest-poll-deployed.git; cp ./bundle.min.js ./modest-poll-deployed/; git add -A ; git commit -m 'deploy'; git push ; rm -rf ./modest-poll-deployed"
+    "deploy": "yarn build; cd build; git clone git@github.com:NikolaDojic/modest-poll-deployed.git; cp ./bundle.min.js ./modest-poll-deployed/; git add -A ; git commit -m 'deploy'; git push ; rm -rf ./modest-poll-deployed",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -40,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "husky": "^8.0.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack-cli": "^4.9.2"
   }

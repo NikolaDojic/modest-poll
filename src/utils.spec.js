@@ -34,8 +34,6 @@ describe("testing util functions", () => {
       { dataset: { questionId: "mockId" } },
     ];
     expect(hasDuplicates(containers)).toBe(true);
-
-    expect(hasDuplicates(containers)).toBe(false);
   });
   it("hasDuplicates should return false for array with no duplicate questionId", () => {
     const containers = [
