@@ -1,4 +1,10 @@
-import { hasDuplicates, hasErrors, normalizeProps } from "./utils";
+import {
+  generateOnAnswerClick,
+  hasDuplicates,
+  hasErrors,
+  normalizeProps,
+  submitAnswers,
+} from "./utils";
 
 describe("testing util functions", () => {
   const hasErrorsParams = {
@@ -58,5 +64,57 @@ describe("testing util functions", () => {
     const props = { answers: "answ1- answ2- answ3", multipleAnswers: "true" };
     const normalizedProps = normalizeProps(props);
     expect(normalizedProps.multipleAnswers).toBe(true);
+  });
+  it("onAnswerClick should remove answer if already selected", () => {
+    const props = {
+      selectedAnswers: ["answer1", "answer2"],
+      setSelectedAnswers: function (answers) {
+        props.selectedAnswers = answers;
+      },
+    };
+    const onAnswerClick = generateOnAnswerClick(props);
+    onAnswerClick("answer2", false);
+    expect(props.selectedAnswers.includes("answer2")).toBe(false);
+  });
+  it("onAnswerClick should remove all except one answer if multipleAnswers is false", () => {
+    const props = {
+      selectedAnswers: ["answer1", "answer2"],
+      setSelectedAnswers: function (answers) {
+        props.selectedAnswers = answers;
+      },
+    };
+    const onAnswerClick = generateOnAnswerClick(props);
+    onAnswerClick("answer4", false);
+    expect(props.selectedAnswers.length).toBe(1);
+  });
+  it("onAnswerClick should add an answer if multipleAnswers is true", () => {
+    const props = {
+      selectedAnswers: ["answer1", "answer2"],
+      setSelectedAnswers: function (answers) {
+        props.selectedAnswers = answers;
+      },
+    };
+    const onAnswerClick = generateOnAnswerClick(props);
+    onAnswerClick("answer4", true);
+    expect(props.selectedAnswers.length).toBe(3);
+  });
+  it("should increase count for provided answers", () => {
+    const props = {
+      questionId: "mockId",
+      answers: ["answer1", "answer2", "answerX"],
+    };
+    const initialCount = {
+      answer1: 3,
+      answer2: 1,
+      answer3: 7,
+    };
+    localStorage.setItem(props.questionId, JSON.stringify(initialCount));
+    submitAnswers(props);
+    const newCount = JSON.parse(localStorage.getItem(props.questionId));
+    expect(newCount.answer1).toBe(4);
+    expect(newCount.answer2).toBe(2);
+    expect(newCount.answer3).toBe(7);
+    expect(newCount.answerX).toBe(1);
+    localStorage.removeItem(props.questionId);
   });
 });
