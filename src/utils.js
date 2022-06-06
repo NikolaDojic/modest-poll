@@ -60,7 +60,7 @@ export const normalizeProps = ({
   if (multipleAnswers === "true") {
     multipleAnswersParsed = true;
   } else {
-    if (multipleAnswers !== "false") {
+    if (multipleAnswers && multipleAnswers !== "false") {
       console.error(
         `'data-multiple-answers' must be 'true' or 'false', value provided: '${multipleAnswers}'`
       );
