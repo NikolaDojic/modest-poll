@@ -55,3 +55,11 @@ Please note that it is not possible to have two polls with the same question id 
 
 For convenience, we added the `minimal_setup` folder that contains an html file with poll widgets.
 They can be opened directly in the browser or hosted, dealer's choice.
+
+## Future improvements
+
+Build process could probbably be optimized, to be done in just one step. 
+
+Styling is rudimental, which leaves a lot of place for refinement.
+
+Answer configuration should probably be reconsidered in context of the api calls, when it comes to that
