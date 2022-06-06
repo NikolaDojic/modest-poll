@@ -58,10 +58,12 @@ They can be opened directly in the browser or hosted, dealer's choice.
 
 ## Future improvements
 
-Build process could probbably be optimized, to be done in just one step. 
+The build process could probably be optimized, to be done in just one step. 
 
 Pre-commit hook should be triggered only on js file changes
 
 Styling is rudimental, which leaves a lot of place for refinement.
 
-Answer configuration should probably be reconsidered in context of the api calls, when it comes to that
+Answer configuration should probably be reconsidered in the context of the api calls, when it comes to that
+
+The user is not recognized as an entity
