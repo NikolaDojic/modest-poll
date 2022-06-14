@@ -1,6 +1,6 @@
 import "./Poll.css";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState } from "react";
 
 import { generateOnAnswerClick, hasErrors } from "./utils";
 import Answers from "./components/Answers";
